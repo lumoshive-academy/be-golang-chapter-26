@@ -7,11 +7,11 @@
 package main
 
 import (
-	"be-golang-chapter-26/config"
-	"be-golang-chapter-26/greeter"
-	"be-golang-chapter-26/notification"
-	"be-golang-chapter-26/service"
-	"be-golang-chapter-26/storage"
+	"be-golang-chapter-26/LA-Chapter-26A-H/config"
+	"be-golang-chapter-26/LA-Chapter-26A-H/greeter"
+	"be-golang-chapter-26/LA-Chapter-26A-H/notification"
+	"be-golang-chapter-26/LA-Chapter-26A-H/service"
+	"be-golang-chapter-26/LA-Chapter-26A-H/storage"
 	"github.com/google/wire"
 	"io"
 	"os"

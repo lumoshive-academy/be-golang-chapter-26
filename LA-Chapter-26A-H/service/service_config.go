@@ -1,6 +1,6 @@
 // package service
 
-// import "be-golang-chapter-26/config"
+// import "be-golang-chapter-26/LA-Chapter-26A-H/config"
 
 // type ServiceConfig struct {
 // 	Config *config.Config
@@ -12,7 +12,7 @@
 
 package service
 
-import "be-golang-chapter-26/config"
+import "be-golang-chapter-26/LA-Chapter-26A-H/config"
 
 type ServiceConfig struct {
 	ConfigA *config.ConfigA

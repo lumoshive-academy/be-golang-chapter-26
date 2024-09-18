@@ -1,8 +1,8 @@
 package service
 
 import (
-	"be-golang-chapter-26/config"
-	"be-golang-chapter-26/notification"
+	"be-golang-chapter-26/LA-Chapter-26A-H/config"
+	"be-golang-chapter-26/LA-Chapter-26A-H/notification"
 )
 
 // Notifier adalah struct yang menggunakan EmailService, SMSService, dan Config

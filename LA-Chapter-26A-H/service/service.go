@@ -1,7 +1,7 @@
 package service
 
 import (
-	"be-golang-chapter-26/greeter"
+	"be-golang-chapter-26/LA-Chapter-26A-H/greeter"
 	"errors"
 )
 

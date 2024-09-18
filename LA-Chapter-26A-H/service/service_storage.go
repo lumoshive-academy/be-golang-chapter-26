@@ -1,6 +1,6 @@
 package service
 
-import "be-golang-chapter-26/storage"
+import "be-golang-chapter-26/LA-Chapter-26A-H/storage"
 
 // NewInMemoryStorage menyediakan instance dari InMemoryStorage
 func NewCachingData() *storage.CachingData {
