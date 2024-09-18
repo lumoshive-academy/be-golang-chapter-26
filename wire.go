@@ -125,3 +125,13 @@ func InitializeDatabase() *storage.Database {
 	wire.Build(DatabaseSet)
 	return nil
 }
+
+var DatabaseSetWithCleanUp = wire.NewSet(
+	ConfigSet,
+	storage.NewDatabaseWithCleanUp,
+)
+
+func InitializeDatabaseWithCleanUp() (*storage.Database, func(), error) {
+	wire.Build(DatabaseSetWithCleanUp)
+	return nil, nil, nil
+}

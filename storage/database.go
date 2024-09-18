@@ -1,5 +1,7 @@
 package storage
 
+import "fmt"
+
 // DatabaseStorage adalah implementasi dari Storage yang menyimpan data dalam database
 type DatabaseStorage struct {
 	data string
@@ -21,4 +23,15 @@ type Database struct {
 
 func NewDatabase(dbName string) *Database {
 	return &Database{Name: dbName}
+}
+
+func NewDatabaseWithCleanUp(name string) (*Database, func(), error) {
+	db := &Database{Name: name}
+
+	// Cleanup function to close the database connection
+	cleanup := func() {
+		fmt.Println("Closing database connection")
+	}
+
+	return db, cleanup, nil
 }

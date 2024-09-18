@@ -96,6 +96,18 @@ var (
 	_wireAppConfigValue = AppConfig
 )
 
+func InitializeDatabaseWithCleanUp() (*storage.Database, func(), error) {
+	appConfig := _wireAppConfigValue
+	string2 := appConfig.DBName
+	database, cleanup, err := storage.NewDatabaseWithCleanUp(string2)
+	if err != nil {
+		return nil, nil, err
+	}
+	return database, func() {
+		cleanup()
+	}, nil
+}
+
 // wire.go:
 
 var myservice = wire.NewSet(greeter.NewGreeter, service.NewService)
@@ -120,4 +132,8 @@ var ConfigSet = wire.NewSet(wire.Value(AppConfig), wire.FieldsOf(new(config.AppC
 
 var DatabaseSet = wire.NewSet(
 	ConfigSet, storage.NewDatabase,
+)
+
+var DatabaseSetWithCleanUp = wire.NewSet(
+	ConfigSet, storage.NewDatabaseWithCleanUp,
 )
