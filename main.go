@@ -20,4 +20,10 @@ func main() {
 	}
 	fmt.Println(service.Greeter.Message)
 
+	config, err := InitializeServiceConfig()
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+	fmt.Println(config.ConfigA.Message)
 }

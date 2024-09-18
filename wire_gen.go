@@ -7,6 +7,7 @@
 package main
 
 import (
+	"be-golang-chapter-26/config"
 	"be-golang-chapter-26/greeter"
 	"be-golang-chapter-26/service"
 )
@@ -20,4 +21,11 @@ func InitializMyService(name string) (*service.Service, error) {
 		return nil, err
 	}
 	return serviceService, nil
+}
+
+func InitializeServiceConfig() (*service.ServiceConfig, error) {
+	configA := config.NewConfig()
+	configB := config.NewConfigAlternative()
+	serviceConfig := service.NewServiceConfig(configA, configB)
+	return serviceConfig, nil
 }
