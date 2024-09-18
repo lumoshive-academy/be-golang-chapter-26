@@ -13,6 +13,8 @@ import (
 	"be-golang-chapter-26/service"
 	"be-golang-chapter-26/storage"
 	"github.com/google/wire"
+	"io"
+	"os"
 )
 
 // Injectors from wire.go:
@@ -58,6 +60,42 @@ func InitializeNotifier() (*service.Notifier, error) {
 	return notifier, nil
 }
 
+// InitializeAppConfig menginisialisasi AppConfig dengan nilai konstan
+func InitializeAppConfig() (*config.AppConfig, error) {
+	string2 := _wireStringValue
+	int2 := _wireIntValue
+	appConfig := &config.AppConfig{
+		AppName: string2,
+		Version: int2,
+	}
+	return appConfig, nil
+}
+
+var (
+	_wireStringValue = "MyApp"
+	_wireIntValue    = 1
+)
+
+func injectReader() io.Reader {
+	reader := _wireFileValue
+	return reader
+}
+
+var (
+	_wireFileValue = os.Stdin
+)
+
+func InitializeDatabase() *storage.Database {
+	appConfig := _wireAppConfigValue
+	string2 := appConfig.DBName
+	database := storage.NewDatabase(string2)
+	return database
+}
+
+var (
+	_wireAppConfigValue = AppConfig
+)
+
 // wire.go:
 
 var myservice = wire.NewSet(greeter.NewGreeter, service.NewService)
@@ -71,3 +109,15 @@ var cachingDataSet = wire.NewSet(service.NewCachingData, wire.Bind(new(storage.S
 var databaseStorageSet = wire.NewSet(service.NewDatabaseStorage, wire.Bind(new(storage.Storage), new(*storage.DatabaseStorage)))
 
 var notifierSet = wire.NewSet(notification.NewEmailService, notification.NewSMSService, config.NewNotifConfig)
+
+var AppConfig = config.AppConfig{
+	AppName: "MyApp",
+	Port:    8080,
+	DBName:  "mydatabase",
+}
+
+var ConfigSet = wire.NewSet(wire.Value(AppConfig), wire.FieldsOf(new(config.AppConfig), "DBName"))
+
+var DatabaseSet = wire.NewSet(
+	ConfigSet, storage.NewDatabase,
+)

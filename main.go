@@ -56,4 +56,15 @@ func main() {
 
 	notifier.SendNotification("Hello, this is a notification!")
 
+	// binding value
+	appConfig, err := InitializeAppConfig()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	appConfig.PrintConfig()
+
+	// struct field provider
+	db := InitializeDatabase()
+	fmt.Printf("Connected to database %s\n", db.Name)
 }

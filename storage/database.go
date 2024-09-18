@@ -13,3 +13,12 @@ func (s *DatabaseStorage) Save(data string) error {
 func (s *DatabaseStorage) Load() (string, error) {
 	return s.data, nil
 }
+
+// implementation struct field provider
+type Database struct {
+	Name string
+}
+
+func NewDatabase(dbName string) *Database {
+	return &Database{Name: dbName}
+}

@@ -14,6 +14,8 @@
 
 package config
 
+import "fmt"
+
 type Config struct {
 	Message string
 }
@@ -34,4 +36,17 @@ func NewConfigAlternative() *ConfigB {
 		Message: "Config 1",
 	}
 	return (*ConfigB)(config)
+}
+
+// AppConfig adalah struct yang menyimpan konfigurasi aplikasi
+type AppConfig struct {
+	AppName string
+	Version int
+	Port    int
+	DBName  string
+}
+
+// PrintConfig mencetak konfigurasi aplikasi
+func (a *AppConfig) PrintConfig() {
+	fmt.Printf("App Name: %s, Version: %v\n", a.AppName, a.Version)
 }
