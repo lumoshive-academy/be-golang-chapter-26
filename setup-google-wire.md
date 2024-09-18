@@ -9,3 +9,11 @@ go install github.com/google/wire/cmd/wire@latest
 ``` bash
 go get github.com/google/wire
 
+```
+
+###  3. Masuk ke direktori project yang terdapat file wire.go lalu jalankan perintah berikut :
+``` bash
+wire
+
+```
+
